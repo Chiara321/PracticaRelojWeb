@@ -19,6 +19,7 @@ body, html {
     justify-content: center;
     align-items: center;
     opacity: 0.7;
+    z-index: -1;
 }
 
 .half img {
@@ -60,4 +61,15 @@ input {
     background-color: white;
     padding: 5px;
     border-radius: 5px;
+}
+
+.daily-phrase {
+    background-color: white;
+    display: block;
+    width: 100%;
+    padding: 10px; /* Ajusta el padding según sea necesario */
+    color: black; /* Color del texto negro */
+    border-radius: 5px; /* Opcional: añade bordes redondeados */
+    z-index: 1;
+    text-align: center;
 }

@@ -1,3 +1,29 @@
+document.addEventListener('DOMContentLoaded', function() {
+    getDailyQuote();
+});
+
+function getDailyQuote() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:3000/api/phrase'); // Cambia la URL a tu servidor proxy en localhost
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            var quoteContainer = document.getElementById('dailyPhrase');
+            quoteContainer.innerHTML = '<p>' + response.phrase + '</p><p>- ' + response.author + '</p>';
+        } else {
+            console.log('Error al obtener la frase del día');
+            var quoteContainer = document.getElementById('dailyPhrase');
+            quoteContainer.innerHTML = '<p>No se pudo cargar la frase del día.</p>';
+        }
+    };
+    xhr.onerror = function() {
+        console.log('Error de red al obtener la frase del día');
+        var quoteContainer = document.getElementById('dailyPhrase');
+        quoteContainer.innerHTML = '<p>Error de red al obtener la frase del día.</p>';
+    };
+    xhr.send();
+}
+
 let displayValue = '';
 
 function addToDisplay(value) {
@@ -31,3 +57,4 @@ function updateClock() {
 }
 
 setInterval(updateClock, 1000);
+
